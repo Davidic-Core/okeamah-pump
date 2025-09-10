@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Certificate - Okeamah Investment</title>
+    <link rel="stylesheet" href="./assets/css/certificate.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+                Back to Dashboard
+            </button>
+            <div class="certificate-actions">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                    Print
+                </button>
+                <button class="btn btn-primary" onclick="downloadPDF()">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+
+        <div class="certificate-wrapper">
+            <div class="certificate" id="certificate">
+                <div class="certificate-border">
+                    <div class="certificate-content">
+                        <!-- Header -->
+                        <div class="cert-header">
+                            <div class="company-logo">
+                                <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=100&h=100" alt="Okeamah Investment Logo" class="logo-image">
+                                <span>Okeamah Investment</span>
+                            </div>
+                            <div class="cert-title">
+                                <h1>INVESTMENT CERTIFICATE</h1>
+                                <p>Certificate of Investment Participation</p>
+                            </div>
+                        </div>
+
+                        <!-- Certificate Body -->
+                        <div class="cert-body">
+                            <div class="cert-text">
+                                <p class="cert-intro">This is to certify that</p>
+                                <h2 class="investor-name">JOHN ALEXANDER DOE</h2>
+                                <p class="cert-statement">
+                                    has successfully invested in our <strong>Growth Fund A</strong> investment program
+                                    and is entitled to the returns and benefits as outlined in the investment agreement.
+                                </p>
+                            </div>
+
+                            <div class="cert-details">
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="label">Certificate Number:</span>
+                                        <span class="value">OKI-2025-001234</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Investment Type:</span>
+                                        <span class="value">Short-Term Growth</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="label">Investment Amount:</span>
+                                        <span class="value">$25,000.00</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Expected Return:</span>
+                                        <span class="value">12.5% Annual</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="label">Investment Date:</span>
+                                        <span class="value">January 15, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Maturity Date:</span>
+                                        <span class="value">March 15, 2025</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="label">Term Duration:</span>
+                                        <span class="value">8 Months</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Status:</span>
+                                        <span class="value status-active">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cert-terms">
+                                <h3>Terms & Conditions</h3>
+                                <ul>
+                                    <li>This certificate represents a legal investment contract between the investor and Okeamah Investment.</li>
+                                    <li>Returns are calculated based on the agreed annual percentage rate and investment duration.</li>
+                                    <li>Early withdrawal may be subject to penalties as outlined in the investment agreement.</li>
+                                    <li>This investment is protected under our comprehensive insurance policy.</li>
+                                    <li>All returns are subject to applicable taxes and regulatory requirements.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="cert-footer">
+                            <div class="signatures">
+                                <div class="signature">
+                                    <div class="signature-line"></div>
+                                    <p>Michael Johnson</p>
+                                    <span>Chief Executive Officer</span>
+                                </div>
+                                <div class="signature">
+                                    <div class="signature-line"></div>
+                                    <p>Sarah Williams</p>
+                                    <span>Chief Financial Officer</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cert-seal">
+                                <div class="seal">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>OFFICIAL SEAL</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cert-info">
+                                <p><strong>Okeamah Investment LLC</strong></p>
+                                <p>123 Financial District, New York, NY 10004</p>
+                                <p>License No: INV-2024-NY-5678 | SIPC Member</p>
+                                <p>Phone: +1 (555) 123-4567 | Email: certificates@okeamahinvestment.com</p>
+                            </div>
+                        </div>
+
+                        <!-- Security Features -->
+                        <div class="security-features">
+                            <div class="watermark">OKEAMAH INVESTMENT</div>
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                                <span>Verify Online</span>
+                            </div>
+                            <div class="security-text">
+                                <p>This certificate contains security features to prevent forgery.</p>
+                                <p>Verify authenticity at: verify.okeamahinvestment.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate List -->
+        <div class="certificate-list">
+            <h3>Your Investment Certificates</h3>
+            <div class="cert-grid">
+                <div class="cert-card active">
+                    <div class="cert-card-header">
+                        <h4>Growth Fund A</h4>
+                        <span class="cert-status active">Active</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <p><strong>Amount:</strong> $25,000</p>
+                        <p><strong>Return:</strong> 12.5%</p>
+                        <p><strong>Maturity:</strong> Mar 15, 2025</p>
+                    </div>
+                    <div class="cert-card-footer">
+                        <span class="cert-number">OKI-2025-001234</span>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-card-header">
+                        <h4>Wealth Builder Pro</h4>
+                        <span class="cert-status active">Active</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <p><strong>Amount:</strong> $50,000</p>
+                        <p><strong>Return:</strong> 18.3%</p>
+                        <p><strong>Maturity:</strong> Dec 20, 2027</p>
+                    </div>
+                    <div class="cert-card-footer">
+                        <span class="cert-number">OKI-2025-001235</span>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-card-header">
+                        <h4>Secure Income</h4>
+                        <span class="cert-status matured">Matured</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <p><strong>Amount:</strong> $15,000</p>
+                        <p><strong>Return:</strong> 8.7%</p>
+                        <p><strong>Completed:</strong> Jan 10, 2025</p>
+                    </div>
+                    <div class="cert-card-footer">
+                        <span class="cert-number">OKI-2024-000987</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./assets/js/certificate.js"></script>
+</body>
+</html>

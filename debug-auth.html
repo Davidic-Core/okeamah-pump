@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Debug - Okeamah Investment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-input:focus {
+            border-color: #4F46E5;
+            outline: none;
+        }
+        .test-button {
+            background: #4F46E5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background: #3730A3;
+        }
+        .debug-log {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Okeamah Investment - Authentication Debug Tool</h1>
+    
+    <div class="debug-section">
+        <h2>1. Basic Interactivity Test</h2>
+        <p>Test if basic HTML elements work:</p>
+        <input type="text" class="test-input" placeholder="Type here to test basic input" id="basicInput">
+        <button class="test-button" onclick="testBasicClick()">Test Basic Button</button>
+        <div id="basicStatus"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>2. CSS Conflict Detection</h2>
+        <p>Testing with auth.css styles applied:</p>
+        <div style="position: relative; z-index: 10;">
+            <input type="email" placeholder="Email with auth styles" style="width: 100%; padding: 1rem; border: 2px solid #E5E7EB; border-radius: 0.75rem; position: relative; z-index: 2;">
+            <button style="background: #4F46E5; color: white; padding: 1rem 2rem; border: none; border-radius: 0.75rem; cursor: pointer; position: relative; z-index: 2; margin-top: 10px;" onclick="testAuthStyleClick()">Test Auth Style Button</button>
+        </div>
+        <div id="authStyleStatus"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>3. JavaScript Loading Test</h2>
+        <div id="jsStatus"></div>
+        <button class="test-button" onclick="testJavaScript()">Test JavaScript Functions</button>
+    </div>
+
+    <div class="debug-section">
+        <h2>4. Network Resources Check</h2>
+        <div id="resourceStatus"></div>
+        <button class="test-button" onclick="checkResources()">Check CSS/JS Loading</button>
+    </div>
+
+    <div class="debug-section">
+        <h2>5. Live Debug Log</h2>
+        <div class="debug-log" id="debugLog"></div>
+        <button class="test-button" onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <div class="debug-section">
+        <h2>6. Simulated Auth Form</h2>
+        <p>Replica of your auth form structure:</p>
+        <div class="auth-container" style="position: relative;">
+            <div class="auth-card" style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 1rem; position: relative; z-index: 10;">
+                <form id="testAuthForm">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Email Address</label>
+                        <div class="input-group" style="position: relative;">
+                            <input type="email" id="testEmail" placeholder="Enter your email" style="width: 100%; padding: 1rem; border: 2px solid #E5E7EB; border-radius: 0.75rem; position: relative; z-index: 2;">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Password</label>
+                        <div class="input-group" style="position: relative;">
+                            <input type="password" id="testPassword" placeholder="Enter your password" style="width: 100%; padding: 1rem; border: 2px solid #E5E7EB; border-radius: 0.75rem; position: relative; z-index: 2;">
+                            <button type="button" class="toggle-password" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; z-index: 3;" onclick="togglePassword()">👁️</button>
+                        </div>
+                    </div>
+                    <button type="submit" style="width: 100%; background: #4F46E5; color: white; padding: 1rem; border: none; border-radius: 0.75rem; cursor: pointer; position: relative; z-index: 2;">Test Sign In</button>
+                </form>
+            </div>
+            <!-- Simulated background elements -->
+            <div class="auth-background" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);">
+                <div class="floating-elements">
+                    <div style="position: absolute; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; top: 20%; left: 10%; pointer-events: none;"></div>
+                </div>
+            </div>
+        </div>
+        <div id="authFormStatus"></div>
+    </div>
+
+    <script>
+        let logCount = 0;
+        
+        function log(message, type = 'info') {
+            const debugLog = document.getElementById('debugLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#ff6b6b' : type === 'success' ? '#51cf66' : type === 'warning' ? '#ffd43b' : '#0f0';
+            debugLog.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            logCount++;
+        }
+
+        function clearLog() {
+            document.getElementById('debugLog').innerHTML = '';
+            logCount = 0;
+        }
+
+        function setStatus(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        function testBasicClick() {
+            log('Basic button clicked successfully!', 'success');
+            setStatus('basicStatus', '✅ Basic button click works!', 'success');
+            
+            const input = document.getElementById('basicInput');
+            if (input.value) {
+                log(`Basic input value: "${input.value}"`, 'success');
+                setStatus('basicStatus', `✅ Basic input works! Value: "${input.value}"`, 'success');
+            } else {
+                setStatus('basicStatus', '⚠️ Basic button works, but try typing in the input field above', 'warning');
+            }
+        }
+
+        function testAuthStyleClick() {
+            log('Auth style button clicked successfully!', 'success');
+            setStatus('authStyleStatus', '✅ Auth-styled button click works!', 'success');
+        }
+
+        function testJavaScript() {
+            log('Testing JavaScript functionality...', 'info');
+            
+            // Test if main functions exist
+            const tests = [
+                { name: 'console.log', test: () => typeof console.log === 'function' },
+                { name: 'document.querySelector', test: () => typeof document.querySelector === 'function' },
+                { name: 'addEventListener', test: () => typeof document.addEventListener === 'function' },
+                { name: 'localStorage', test: () => typeof localStorage === 'object' }
+            ];
+
+            let passed = 0;
+            tests.forEach(test => {
+                try {
+                    if (test.test()) {
+                        log(`✅ ${test.name} - OK`, 'success');
+                        passed++;
+                    } else {
+                        log(`❌ ${test.name} - FAILED`, 'error');
+                    }
+                } catch (e) {
+                    log(`❌ ${test.name} - ERROR: ${e.message}`, 'error');
+                }
+            });
+
+            setStatus('jsStatus', `JavaScript Test: ${passed}/${tests.length} functions working`, passed === tests.length ? 'success' : 'error');
+        }
+
+        function checkResources() {
+            log('Checking resource loading...', 'info');
+            
+            const resources = [
+                { name: 'Font Awesome', url: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' },
+                { name: 'Auth CSS', url: './assets/css/auth.css' },
+                { name: 'Auth JS', url: './assets/js/auth.js' }
+            ];
+
+            let loaded = 0;
+            let total = resources.length;
+
+            resources.forEach(resource => {
+                fetch(resource.url)
+                    .then(response => {
+                        if (response.ok) {
+                            log(`✅ ${resource.name} - Loaded (${response.status})`, 'success');
+                            loaded++;
+                        } else {
+                            log(`❌ ${resource.name} - Failed (${response.status})`, 'error');
+                        }
+                        
+                        if (loaded + (total - loaded) === total) {
+                            setStatus('resourceStatus', `Resources: ${loaded}/${total} loaded successfully`, loaded === total ? 'success' : 'error');
+                        }
+                    })
+                    .catch(error => {
+                        log(`❌ ${resource.name} - Network Error: ${error.message}`, 'error');
+                        total--;
+                        if (loaded + (total - loaded) === total) {
+                            setStatus('resourceStatus', `Resources: ${loaded}/${total} loaded successfully`, loaded === total ? 'success' : 'error');
+                        }
+                    });
+            });
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('testPassword');
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            log(`Password visibility toggled to: ${type}`, 'info');
+        }
+
+        // Initialize debugging
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 Debug tool initialized', 'success');
+            log('Click elements and watch this log for activity', 'info');
+            
+            // Add event listeners to test inputs
+            document.getElementById('basicInput').addEventListener('input', function(e) {
+                log(`Basic input changed: "${e.target.value}"`, 'info');
+            });
+
+            document.getElementById('basicInput').addEventListener('focus', function() {
+                log('Basic input focused', 'info');
+            });
+
+            // Test auth form
+            document.getElementById('testAuthForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('testEmail').value;
+                const password = document.getElementById('testPassword').value;
+                log(`Auth form submitted - Email: "${email}", Password: "${password ? '***' : 'empty'}"`, 'success');
+                setStatus('authFormStatus', '✅ Auth form submission works!', 'success');
+            });
+
+            document.getElementById('testEmail').addEventListener('input', function(e) {
+                log(`Auth email input: "${e.target.value}"`, 'info');
+            });
+
+            document.getElementById('testPassword').addEventListener('input', function(e) {
+                log(`Auth password input: ${e.target.value ? '***' : 'empty'}`, 'info');
+            });
+
+            // Auto-run basic tests
+            setTimeout(() => {
+                testJavaScript();
+                checkResources();
+            }, 1000);
+        });
+
+        // Global click detector
+        document.addEventListener('click', function(e) {
+            log(`Click detected on: ${e.target.tagName} ${e.target.className || ''}`, 'info');
+        });
+
+        // Global error handler
+        window.addEventListener('error', function(e) {
+            log(`JavaScript Error: ${e.message} at ${e.filename}:${e.lineno}`, 'error');
+        });
+    </script>
+</body>
+</html>

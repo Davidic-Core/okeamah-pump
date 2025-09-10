@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Okeamah Investment</title>
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=100&h=100" alt="Okeamah Investment Logo" class="logo-image">
+                    <span>Okeamah Investment</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#overview">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#portfolio">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Portfolio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#investments">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Investments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#transactions">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transactions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#certificates">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificates</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Investment Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Premium Investor</span>
+                        </div>
+                        <button class="user-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Overview Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$125,430.50</h3>
+                            <p>Total Portfolio Value</p>
+                            <span class="stat-change positive">+12.5%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$15,230.75</h3>
+                            <p>Total Returns</p>
+                            <span class="stat-change positive">+8.3%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$8,500.00</h3>
+                            <p>Available Balance</p>
+                            <span class="stat-change neutral">Ready to invest</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>7</h3>
+                            <p>Active Investments</p>
+                            <span class="stat-change positive">2 maturing soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Portfolio Performance</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active">1M</button>
+                                <button class="chart-btn">3M</button>
+                                <button class="chart-btn">6M</button>
+                                <button class="chart-btn">1Y</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="portfolioChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="allocation-card">
+                        <div class="chart-header">
+                            <h3>Asset Allocation</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="allocationChart"></canvas>
+                        </div>
+                        <div class="allocation-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #4F46E5;"></span>
+                                <span>Short-term (45%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #10B981;"></span>
+                                <span>Long-term (35%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #F59E0B;"></span>
+                                <span>Cash (20%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Investments -->
+                <div class="investments-section">
+                    <div class="section-header">
+                        <h3>Recent Investments</h3>
+                        <button class="btn btn-primary">New Investment</button>
+                    </div>
+                    
+                    <div class="investments-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Investment</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Return</th>
+                                    <th>Status</th>
+                                    <th>Maturity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="investment-info">
+                                            <i class="fas fa-rocket"></i>
+                                            <span>Growth Fund A</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge short-term">Short-term</span></td>
+                                    <td>$25,000</td>
+                                    <td class="positive">+12.5%</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>Mar 15, 2025</td>
+                                    <td>
+                                        <button class="action-btn">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="investment-info">
+                                            <i class="fas fa-tree"></i>
+                                            <span>Wealth Builder Pro</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge long-term">Long-term</span></td>
+                                    <td>$50,000</td>
+                                    <td class="positive">+18.3%</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>Dec 20, 2027</td>
+                                    <td>
+                                        <button class="action-btn">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="investment-info">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>Secure Income</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge short-term">Short-term</span></td>
+                                    <td>$15,000</td>
+                                    <td class="positive">+8.7%</td>
+                                    <td><span class="status matured">Matured</span></td>
+                                    <td>Jan 10, 2025</td>
+                                    <td>
+                                        <button class="action-btn">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-card">
+                            <i class="fas fa-plus"></i>
+                            <span>New Investment</span>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Withdraw Funds</span>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-file-download"></i>
+                            <span>Download Report</span>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-headset"></i>
+                            <span>Contact Support</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./assets/js/dashboard.js"></script>
+</body>
+</html>

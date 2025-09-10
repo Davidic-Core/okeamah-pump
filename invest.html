@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Investment - Okeamah Investment</title>
+    <link rel="stylesheet" href="./assets/css/auth.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .investment-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .investment-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .investment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .investment-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .investment-header p {
+            color: #6B7280;
+            font-size: 1.125rem;
+        }
+        
+        .package-selection {
+            margin-bottom: 2rem;
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .package-card {
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .package-card:hover {
+            border-color: #4F46E5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-card.selected {
+            border-color: #4F46E5;
+            background: rgba(79, 70, 229, 0.05);
+        }
+        
+        .package-card.featured {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+        
+        .package-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -10px;
+            right: 1rem;
+            background: #10B981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .package-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .package-return {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #4F46E5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .package-term {
+            color: #6B7280;
+            margin-bottom: 1rem;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .package-features li {
+            padding: 0.25rem 0;
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+        
+        .package-features li::before {
+            content: '✓';
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .investment-form {
+            display: none;
+        }
+        
+        .investment-form.active {
+            display: block;
+        }
+        
+        .amount-input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .amount-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 2rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .amount-input:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #6B7280;
+        }
+        
+        .amount-presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .preset-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #E5E7EB;
+            background: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .preset-btn:hover {
+            border-color: #4F46E5;
+            color: #4F46E5;
+        }
+        
+        .investment-summary {
+            background: #F9FAFB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        
+        .summary-row:last-child {
+            margin-bottom: 0;
+            padding-top: 0.75rem;
+            border-top: 1px solid #E5E7EB;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        
+        .payment-section {
+            margin-top: 2rem;
+        }
+        
+        .payment-element {
+            margin-bottom: 1.5rem;
+        }
+        
+        .payment-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6B7280;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #4F46E5;
+        }
+        
+        @media (max-width: 768px) {
+            .investment-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .investment-card {
+                padding: 1.5rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .amount-presets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="investment-container">
+        <a href="dashboard.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+        
+        <div class="investment-card">
+            <div class="investment-header">
+                <h1>Make an Investment</h1>
+                <p>Choose your investment package and secure your financial future</p>
+            </div>
+            
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <h3 style="margin-bottom: 1rem; color: #1F2937;">Select Investment Package</h3>
+                <div class="package-grid">
+                    <div class="package-card" data-package="short-term-growth">
+                        <div class="package-name">Growth Fund A</div>
+                        <div class="package-return">12.5%</div>
+                        <div class="package-term">8 Months Term</div>
+                        <ul class="package-features">
+                            <li>High-yield returns</li>
+                            <li>Flexible terms</li>
+                            <li>Quick liquidity</li>
+                            <li>Low risk profile</li>
+                        </ul>
+                        <div style="font-size: 0.875rem; color: #6B7280;">
+                            Min: $1,000 • Max: $100,000
+                        </div>
+                    </div>
+                    
+                    <div class="package-card featured" data-package="long-term-wealth">
+                        <div class="package-name">Wealth Builder Pro</div>
+                        <div class="package-return">18.3%</div>
+                        <div class="package-term">24 Months Term</div>
+                        <ul class="package-features">
+                            <li>Maximum returns</li>
+                            <li>Compound growth</li>
+                            <li>Tax optimized</li>
+                            <li>Premium support</li>
+                        </ul>
+                        <div style="font-size: 0.875rem; color: #6B7280;">
+                            Min: $5,000 • Max: $500,000
+                        </div>
+                    </div>
+                    
+                    <div class="package-card" data-package="secure-income">
+                        <div class="package-name">Secure Income</div>
+                        <div class="package-return">8.7%</div>
+                        <div class="package-term">6 Months Term</div>
+                        <ul class="package-features">
+                            <li>Guaranteed returns</li>
+                            <li>Capital protection</li>
+                            <li>Regular payouts</li>
+                            <li>Insurance covered</li>
+                        </ul>
+                        <div style="font-size: 0.875rem; color: #6B7280;">
+                            Min: $500 • Max: $50,000
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Investment Form -->
+            <div class="investment-form" id="investmentForm">
+                <h3 style="margin-bottom: 1rem; color: #1F2937;">Investment Amount</h3>
+                
+                <div class="amount-input-group">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" class="amount-input" id="investmentAmount" placeholder="0" min="0" step="100">
+                </div>
+                
+                <div class="amount-presets" id="amountPresets">
+                    <!-- Preset buttons will be populated by JavaScript -->
+                </div>
+                
+                <div class="investment-summary" id="investmentSummary">
+                    <div class="summary-row">
+                        <span>Investment Package:</span>
+                        <span id="summaryPackage">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Investment Amount:</span>
+                        <span id="summaryAmount">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Expected Return:</span>
+                        <span id="summaryReturn">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Term Duration:</span>
+                        <span id="summaryTerm">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Maturity Value:</span>
+                        <span id="summaryMaturity">$0</span>
+                    </div>
+                </div>
+                
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <h3 style="margin-bottom: 1rem; color: #1F2937;">Payment Details</h3>
+                    <div id="payment-element" class="payment-element">
+                        <!-- Stripe Elements will be mounted here -->
+                    </div>
+                    
+                    <button type="button" class="payment-button" id="paymentButton" disabled>
+                        <span>Complete Investment</span>
+                        <i class="fas fa-lock"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./assets/js/invest.js"></script>
+</body>
+</html>

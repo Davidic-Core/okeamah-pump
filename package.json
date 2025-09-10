@@ -1,0 +1,33 @@
+{
+  "name": "okeamah-investment",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .js,.ts,.html",
+    "lint:fix": "eslint . --ext .js,.ts,.html --fix"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "aos": "^2.3.4",
+    "@stripe/stripe-js": "^2.4.0",
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8",
+    "vitest": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
+    "jsdom": "^23.0.0",
+    "@testing-library/dom": "^9.3.0",
+    "@testing-library/user-event": "^14.5.0",
+    "happy-dom": "^12.10.0",
+    "eslint": "^8.56.0",
+    "audit-ci": "^6.6.1",
+    "terser": "^5.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+# Netlify redirects file for client-side routing
+/dashboard /dashboard.html 200
+/login /login.html 200
+/signup /signup.html 200
+/certificate /certificate.html 200
+/invest /invest.html 200
+
+# Fallback for any other routes
+/* /index.html 200
