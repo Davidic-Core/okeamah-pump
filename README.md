@@ -1,6 +1,6 @@
-# Okeamah Investment
+# Okamah-Pump
 
-A professional investment company website offering both short-term and long-term investment solutions for individual and institutional investors.
+A rebranded investment portfolio platform designed to help individuals and businesses grow their capital while earning sustainable passive income through blockchain-powered investments and tokenized assets.
 
 ## Features
 
@@ -28,7 +28,7 @@ A professional investment company website offering both short-term and long-term
 ## File Structure
 
 ```
-okeamah-investment/
+okamah-pump/
 ├── index.html              # Landing page
 ├── login.html              # User authentication
 ├── signup.html             # User registration
@@ -54,7 +54,7 @@ okeamah-investment/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd okeamah-investment
+   cd okamah-pump
    ```
 
 2. **Install dependencies**
@@ -121,11 +121,11 @@ okeamah-investment/
 
 ## License
 
-This project is proprietary software owned by Okeamah Investment LLC. All rights reserved.
+This project is proprietary software owned by Okamah-Pump LLC. All rights reserved.
 
 ## Contact
 
 For technical support or business inquiries:
-- Email: info@okeamahinvestment.com
+- Email: info@okamah-pump.com
 - Phone: +1 (555) 123-4567
 - Address: 123 Financial District, New York, NY 10004

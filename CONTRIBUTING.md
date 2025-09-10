@@ -1,13 +1,13 @@
-# Contributing to Okeamah Investment
+# Contributing to Okamah-Pump
 
-Thank you for your interest in contributing to Okeamah Investment! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to Okamah-Pump! This document provides guidelines for contributing to the project.
 
 ## Development Workflow
 
 ### 1. Fork and Clone
 ```bash
-git clone https://github.com/yourusername/okeamah-investment.git
-cd okeamah-investment
+git clone https://github.com/yourusername/okamah-pump.git
+cd okamah-pump
 npm install
 ```
 
